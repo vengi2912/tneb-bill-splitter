@@ -33,8 +33,8 @@ jobs:
           fi
 
       - name: Remove hardcoded Xmx from gradle files
-        run: |
-          find android -name "*.gradle" -o -name "gradle.properties" | xargs sed -i 's/-Xmx64m//g'
+  run: |
+    find android -type f -name "*.gradle" -o -name "gradle.properties" | xargs sed -i 's/-Xmx64m//g'
           find android -name "*.gradle" -o -name "gradle.properties" | xargs sed -i 's/-Xmx512m//g'
           find android -name "*.gradle" -o -name "gradle.properties" | xargs sed -i 's/-Xmx1024m//g'
 
