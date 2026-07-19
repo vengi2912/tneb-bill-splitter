@@ -30,7 +30,6 @@ android {
     }
 
     defaultConfig {
-        // Unique application id for the "TNEB Bill Splitter" app.
         applicationId "com.tneb.billsplitter"
         minSdkVersion 21
         targetSdkVersion 34
@@ -40,10 +39,6 @@ android {
 
     buildTypes {
         release {
-            // TODO: For a real Play Store release, create your own upload
-            // keystore and signingConfig (see README.md -> "Signing the
-            // release build"). Until then this uses the auto-generated
-            // debug key so `flutter build apk --release` works out of the box.
             signingConfig signingConfigs.debug
             minifyEnabled false
             shrinkResources false
