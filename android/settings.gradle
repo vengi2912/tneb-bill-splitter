@@ -1,0 +1,2 @@
+rootProject.name = 'tneb_bill_splitter'
+include ':app'
