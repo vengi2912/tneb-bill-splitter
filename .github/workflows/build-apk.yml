@@ -65,7 +65,12 @@ jobs:
           flutter --version
           yes | flutter doctor --android-licenses || true
           flutter doctor -v
-
+- name: Clean build directories
+        run: |
+          flutter clean
+          cd android
+          rm -rf .gradle build
+          cd ..
       - name: Get Flutter dependencies
         run: flutter pub get
 
