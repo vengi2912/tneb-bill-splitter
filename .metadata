@@ -1,0 +1,25 @@
+# This file tracks properties of this Flutter project.
+# Used by Flutter tooling to track customization of Flutter framework code.
+
+version:
+  revision: "e0d9570d3aaf8d78263b9f390147baa9079beb13"
+  channel: stable
+
+project_type: app
+
+# Tracks metadata associated with migrations.
+migration:
+  platforms:
+    - platform: root
+      create_base_migration_path: true
+    - platform: android
+      create_base_migration_path: true
+
+# User customizations that should be retained when upgrading Flutter.
+customization:
+  organization: com.tneb
+  category: Finance
+  platforms:
+    android:
+      package: com.tneb.billsplitter
+      pluginClass:
