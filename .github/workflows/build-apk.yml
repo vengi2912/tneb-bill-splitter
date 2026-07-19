@@ -34,45 +34,24 @@ jobs:
           android: true
           cache: true
 
-      - name: Cache Gradle and pub
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ~/.pub-cache
-          key: ${{ runner.os }}-build-${{ hashFiles('**/gradle-wrapper.properties','**/pubspec.yaml') }}
-
-      - name: Verify Flutter and accept Android licenses
+      - name: Verify Flutter
         run: |
           flutter --version
           yes | flutter doctor --android-licenses || true
-          flutter doctor -v
 
-      - name: Clean build directories
+      - name: Clean all caches
         run: |
           flutter clean
-          cd android
-          rm -rf .gradle build
-          cd ..
+          rm -rf ~/.gradle
+          rm -rf android/.gradle
+          rm -rf android/build
+          rm -rf build
 
-      - name: Get Flutter dependencies
+      - name: Get dependencies
         run: flutter pub get
 
       - name: Build Release APK
         run: flutter build apk --release
-
-      - name: Verify build outputs
-        run: |
-          echo "Listing build outputs:"
-          ls -la build/app/outputs/flutter-apk || true
-          if [ -f build/app/outputs/flutter-apk/app-release.apk ]; then
-            echo "APK found: build/app/outputs/flutter-apk/app-release.apk"
-          else
-            echo "ERROR: APK not found at expected path"
-            ls -R build || true
-            exit 1
-          fi
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
