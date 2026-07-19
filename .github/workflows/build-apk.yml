@@ -32,11 +32,10 @@ jobs:
             gradle wrapper --gradle-version 8.7
           fi
 
-      - name: Remove hardcoded Xmx from gradle files
-  run: |
-    find android -type f -name "*.gradle" -o -name "gradle.properties" | xargs sed -i 's/-Xmx64m//g'
-          find android -name "*.gradle" -o -name "gradle.properties" | xargs sed -i 's/-Xmx512m//g'
-          find android -name "*.gradle" -o -name "gradle.properties" | xargs sed -i 's/-Xmx1024m//g'
+      - name: Clean gradle cache and settings
+        run: |
+          rm -rf android/.gradle
+          find android -type f \( -name "*.gradle" -o -name "gradle.properties" \) -exec sed -i 's/-Xmx64m//g; s/-Xmx512m//g; s/-Xmx1024m//g' {} +
 
       - name: Set up Java 17
         uses: actions/setup-java@v3
